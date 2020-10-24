@@ -6,7 +6,7 @@ Discord API Wrapper
 
 A basic wrapper for the Discord API.
 
-:copyright: (c) 2015-2019 Rapptz
+:copyright: (c) 2015-2020 Rapptz
 :license: MIT, see LICENSE for more details.
 
 """
@@ -14,8 +14,10 @@ A basic wrapper for the Discord API.
 __title__ = 'discord'
 __author__ = 'Rapptz'
 __license__ = 'MIT'
-__copyright__ = 'Copyright 2015-2019 Rapptz'
-__version__ = '1.3.0a'
+__copyright__ = 'Copyright 2015-2020 Rapptz'
+__version__ = '1.5.1'
+
+__path__ = __import__('pkgutil').extend_path(__path__, __name__)
 
 from collections import namedtuple
 import logging
@@ -27,10 +29,11 @@ from .emoji import Emoji
 from .partial_emoji import PartialEmoji
 from .activity import *
 from .channel import *
-from .guild import Guild, SystemChannelFlags
+from .guild import Guild
+from .flags import *
 from .relationship import Relationship
 from .member import Member, VoiceState
-from .message import Message, Attachment
+from .message import Message, MessageReference, Attachment
 from .asset import Asset
 from .errors import *
 from .calls import CallMessage, GroupCall
@@ -38,18 +41,21 @@ from .permissions import Permissions, PermissionOverwrite
 from .role import Role
 from .file import File
 from .colour import Color, Colour
+from .integrations import Integration, IntegrationAccount
 from .invite import Invite, PartialInviteChannel, PartialInviteGuild
+from .template import Template
 from .widget import Widget, WidgetMember, WidgetChannel
 from .object import Object
 from .reaction import Reaction
 from . import utils, opus, abc, rtp
 from .enums import *
 from .embeds import Embed
-from .shard import AutoShardedClient
+from .mentions import AllowedMentions
+from .shard import AutoShardedClient, ShardInfo
 from .player import *
 from .reader import *
 from .webhook import *
-from .voice_client import VoiceClient
+from .voice_client import VoiceClient, VoiceProtocol
 from .audit_logs import AuditLogChanges, AuditLogEntry, AuditLogDiff
 from .raw_models import *
 from .team import *
@@ -57,7 +63,7 @@ from .speakingstate import SpeakingState
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro releaselevel serial')
 
-version_info = VersionInfo(major=1, minor=3, micro=0, releaselevel='alpha', serial=0)
+version_info = VersionInfo(major=1, minor=5, micro=1, releaselevel='final', serial=0)
 
 try:
     from logging import NullHandler
